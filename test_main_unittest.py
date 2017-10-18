@@ -18,7 +18,7 @@ class TestSumMax(unittest.TestCase):
         self.assertEqual(sumMax('3 4 8 --sum'.split()), 15)
 
     def test_sum_3_4_8p2(self):
-        self.assertEqual(sumMax('3 4 8.2 --sum'.split()), 15.2)
+        self.assertEqual(sumMax('3 4 8.3 --sum'.split()), 15.3)
 
 
 if __name__ == '__main__':
