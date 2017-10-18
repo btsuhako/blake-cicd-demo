@@ -1,0 +1,26 @@
+- pipeline: "Test"
+  trigger_mode: "ON_EVERY_PUSH"
+  ref_name: "*"
+  actions:
+  - action: "Execute: python -m unittest -v test_main_unittest"
+    type: "BUILD"
+    docker_image_name: "library/python"
+    docker_image_tag: "3-slim"
+    execute_commands:
+    - "# CMDs working directory is the pipeline's filesystem with cloned repo "
+    - "pip install -r requirements.txt"
+    - "python -m unittest -v test_main_unittest"
+    cached_dirs:
+    - "/root/.cache/pip"
+- pipeline: "Build & Deploy"
+  trigger_mode: "ON_EVERY_PUSH"
+  ref_name: "master"
+  actions:
+  - action: "Build & Deploy Docker image"
+    type: "DOCKERFILE"
+    login: "btsuhako"
+    password: "{docker-password}"
+    docker_image_tag: "latest"
+    dockerfile_path: "Dockerfile"
+    context_path: "."
+    repository: "btsuhako/blake-cicd-demo"
