@@ -5,7 +5,7 @@ import numpy
 
 def sumMax(args):
     parser = argparse.ArgumentParser(description='Process some integers.')
-    parser.add_argument('integers', metavar='N', type=int, nargs='+',
+    parser.add_argument('integers', metavar='N', type=float, nargs='+',
                         help='an integer for the accumulator')
     parser.add_argument('--sum', dest='accumulate', action='store_const',
                         const=numpy.sum, default=numpy.max,
